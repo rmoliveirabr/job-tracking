@@ -6,8 +6,8 @@ export class AWSUtils<T> {
     constructor() { 
         // setup AWS
         AWS.config.update({
-            accessKeyId: 'AKIAQM52DBTSWAUIDVZN',
-            secretAccessKey: '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',
+            accessKeyId: 'TBD',
+            secretAccessKey: 'TBD',
             region: 'sa-east-1'
         });
         this.docClient = new AWS.DynamoDB.DocumentClient();
