@@ -1,0 +1,68 @@
+<h3 class="mt-3">{{action}} Profile</h3>
+<form [formGroup]="profileForm" (ngSubmit)="addEditProfile()">
+  <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input formControlName="name" type="text" class="form-control" id="name" autocomplete="off" autofocus>
+      <span class="text-danger" *ngIf="profileForm.get('name')?.invalid && profileForm.get('name')?.touched">
+          <strong>Name</strong> is required.
+      </span>
+  </div>
+  <div class="mb-3">
+    <label for="resumes" class="form-label">Resumes</label>
+
+    <div class="accordion" id="resumeList" *ngFor="let resume of resumes">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + resume.id" aria-expanded="false" [attr.aria-controls]="'collapse' + resume.id">
+            {{ resume.templateName }}&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-outline-primary btn-sm" (click)="addEditResume(resume.id)">Edit</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteResume(resume.id)">Delete</button>
+        </button>
+        </h2>
+        <div id="collapse{{ resume.id }}" class="accordion-collapse collapse" data-bs-parent="#resumeList">
+          <div class="accordion-body">
+            <pre>{{ resume.description}}</pre><br>
+            Version: {{ resume.version }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <button type="button" class="btn btn-primary float-end" (click)="addEditResume()">Add Resume</button><br><br><br>
+  </div>
+  <div class="mb-3">
+    <button type="submit" [disabled]="profileForm.invalid" class="btn btn-primary float-end">Accept</button>
+    <button type="button" class="btn btn-secondary" routerLink="/profiles">Back</button>
+  </div>
+</form>
+<form [formGroup]="resumeForm" (ngSubmit)="saveResume()" >
+    <div class="modal fade" id="resumeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="resumeModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="resumeModalLabel">New Resume</h1>
+            <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="templateName" class="form-label">Template Name</label>
+              <input formControlName="templateName" type="text" class="form-control" id="templateName" autocomplete="off" autofocus>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea  formControlName="description" type="text" class="form-control" id="description" autocomplete="off" rows="4"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="version" class="form-label">Version</label>
+              <input formControlName="version" type="text" class="form-control" id="version" autocomplete="off">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</form>
