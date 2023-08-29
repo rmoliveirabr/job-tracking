@@ -1,0 +1,35 @@
+<div class="row mt-3">
+  <div class="col-lg-6">
+      <h3>Profiles</h3>
+  </div>
+</div>
+<table *ngIf="profiles.length > 0" class="table table-hover mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Resume #</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let profile of profiles">
+        <td><a href="{{ '/profile/' + profile.id + '/view' }}">{{ profile.name }}</a></td>
+        <td>{{ profile.resumes?.length || 0 }}</td>
+        <td style="width:10%">
+          <button [routerLink]="['/profile', profile.id]" class="btn btn-primary btn-sm float-end">Edit</button>
+        </td>
+        <td style="width:10%">
+          <button (click)="deleteProfile(profile.id)" class="btn btn-danger btn-sm float-end">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+</table>
+<div *ngIf="profiles.length == 0" class="row at-5">
+  <h5>No profiles saved</h5>
+</div>
+<div class="row mt-3">
+  <div class="col-lg-6">
+      <button class="btn btn-primary float-end" routerLink="/profile">Add Profile</button>
+  </div>
+</div>
