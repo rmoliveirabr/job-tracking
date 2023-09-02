@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'job-role', component: JobRoleFormComponent },
   { path: 'job-role/:id', component: JobRoleFormComponent },
   { path: 'job-role/:id/view', component: JobRoleViewComponent },
+  { path: 'profile/:id/view', component: ProfileViewComponent }
 ];
 
 @NgModule({

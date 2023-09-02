@@ -33,6 +33,7 @@ import { MatInputModule } from '@angular/material/input';
     JobRoleListComponent,
     JobRoleFormComponent,
     JobRoleViewComponent
+    ProfileViewComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +44,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

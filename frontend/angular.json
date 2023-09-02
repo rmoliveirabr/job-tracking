@@ -92,7 +92,10 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
               "@angular/material/prebuilt-themes/purple-green.css",
+=======
+>>>>>>> origin/master
               "src/styles.css"
             ],
             "scripts": []
