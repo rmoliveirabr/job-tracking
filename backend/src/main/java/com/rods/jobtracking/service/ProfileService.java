@@ -6,12 +6,8 @@ import java.util.List;
 
 public interface ProfileService {
     ProfileDto createProfile(ProfileDto profileDto);
-
     List<ProfileDto> getAllProfiles();
-
     ProfileDto getProfileById(Long id);
-
-    void deleteProfileBy(Long id);
-
     ProfileDto updateProfile(Long id, ProfileDto profile);
+    void deleteProfileBy(Long id);
 }

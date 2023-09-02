@@ -40,8 +40,4 @@ export class ProfileService {
     
     return profile.id;
   }
-
-  /*async getResumeListFromProfile(id:string): Promise<Resume[]> {
-
-  }*/
 }

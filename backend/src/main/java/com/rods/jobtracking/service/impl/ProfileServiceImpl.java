@@ -1,16 +1,12 @@
 package com.rods.jobtracking.service.impl;
 
 import com.rods.jobtracking.dto.ProfileDto;
-import com.rods.jobtracking.dto.ResumeDto;
 import com.rods.jobtracking.entity.Profile;
-import com.rods.jobtracking.entity.Resume;
 import com.rods.jobtracking.exception.ResourceNotFoundException;
 import com.rods.jobtracking.mapper.ProfileMapper;
-import com.rods.jobtracking.mapper.ResumeMapper;
 import com.rods.jobtracking.repository.ProfileRepository;
 import com.rods.jobtracking.repository.ResumeRepository;
 import com.rods.jobtracking.service.ProfileService;
-import com.rods.jobtracking.service.ResumeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +32,8 @@ public class ProfileServiceImpl implements ProfileService {
     public List<ProfileDto> getAllProfiles() {
 
         List<Profile> profiles = profileRepository.findAll();
-        return profiles.stream().map((profile) -> ProfileMapper.mapToProfileDto(profile))
+        return profiles.stream()
+                .map((profile) -> ProfileMapper.mapToProfileDto(profile))
                 .collect(Collectors.toList());
     }
 
@@ -49,15 +46,6 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public void deleteProfileBy(Long id) {
-        profileRepository.findById(id)
-                        .orElseThrow(() ->
-                                new ResourceNotFoundException("Profile with id '" + id + "' not found!"));
-
-        profileRepository.deleteById(id);
-    }
-
-    @Override
     public ProfileDto updateProfile(Long id, ProfileDto updatedProfileDto) {
         Profile profile = profileRepository.findById(id)
                 .orElseThrow(() ->
@@ -67,5 +55,14 @@ public class ProfileServiceImpl implements ProfileService {
 
         Profile updatedProfile = profileRepository.save(profile);
         return ProfileMapper.mapToProfileDto(updatedProfile);
+    }
+
+    @Override
+    public void deleteProfileBy(Long id) {
+        profileRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Profile with id '" + id + "' not found!"));
+
+        profileRepository.deleteById(id);
     }
 }

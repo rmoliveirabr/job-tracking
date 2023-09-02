@@ -1,0 +1,36 @@
+<div class="row mt-3">
+    <div class="col-lg-6">
+        <h3>Companies</h3>
+    </div>
+  </div>
+  <table *ngIf="companies.length > 0" class="table table-hover mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">URL</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let company of companies">
+          <td><a href="{{ '/company/' + company.id + '/view' }}">{{ company.name }}</a></td>
+          <td>{{ company.url }}</td>
+          <td style="width:10%">
+            <button [routerLink]="['/company', company.id]" class="btn btn-primary btn-sm float-end">Edit</button>
+          </td>
+          <td style="width:10%">
+            <button (click)="deleteCompany(company.id)" class="btn btn-danger btn-sm float-end">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+  <div *ngIf="companies.length == 0" class="row at-5">
+    <h5>No companies saved</h5>
+  </div>
+  <div class="row mt-3">
+    <div class="col-lg-6">
+        <button class="btn btn-primary float-end" routerLink="/company">Add Company</button>
+    </div>
+  </div>
+  

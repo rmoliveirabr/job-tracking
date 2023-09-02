@@ -1,0 +1,21 @@
+<h3 class="mt-3">{{action}} Company</h3>
+<form [formGroup]="companyForm" (ngSubmit)="addEditCompany()">
+  <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input formControlName="name" type="text" class="form-control" id="name" autocomplete="off" autofocus>
+      <span class="text-danger" *ngIf="companyForm.get('name')?.invalid && companyForm.get('name')?.touched">
+          <strong>Name</strong> is required.
+      </span>
+  </div>
+  <div class="mb-3">
+    <label for="url" class="form-label">URL</label>
+    <input formControlName="url" type="text" class="form-control" id="url" autocomplete="off" autofocus>
+    <span class="text-danger" *ngIf="companyForm.get('url')?.invalid && companyForm.get('url')?.touched">
+        <strong>URL</strong> is required.
+    </span>
+</div>
+<div class="mb-3">
+    <button type="submit" [disabled]="companyForm.invalid" class="btn btn-primary float-end">Accept</button>
+    <button type="button" class="btn btn-secondary" routerLink="/profiles">Back</button>
+  </div>
+</form>

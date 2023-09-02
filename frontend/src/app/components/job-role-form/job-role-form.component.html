@@ -1,0 +1,39 @@
+<h3 class="mt-3">{{action}} Job Role</h3>
+<form [formGroup]="jobRoleForm" (ngSubmit)="addEditJobRole()">
+  <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input formControlName="name" type="text" class="form-control" id="name" autocomplete="off" autofocus>
+      <span class="text-danger" *ngIf="jobRoleForm.get('name')?.invalid && jobRoleForm.get('name')?.touched">
+          <strong>Name</strong> is required.
+      </span>
+  </div>
+  <div class="mb-3">
+    <label for="alternateNames" class="form-label">Alternate names (CSV)</label>
+    <input formControlName="alternateNames" type="text" class="form-control" id="alternateNames" autocomplete="off" autofocus>
+    <span class="text-danger" *ngIf="jobRoleForm.get('alternateNames')?.invalid && jobRoleForm.get('alternateNames')?.touched">
+        <strong>Alternate names</strong> is required.
+    </span>
+  </div>
+  <div class="mb-3">
+    <mat-form-field>
+      <!--label for="grade" class="form-label">Grade</label-->
+      <br/>
+      <mat-label>Grade</mat-label>
+      <input type="text"
+            placeholder="Choose one"
+            aria-label="Grade"
+            matInput
+            [formControl]="gradeControl"
+            [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let grade of filteredGrades | async" [value]="grade">
+          {{grade}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>  
+  <div class="mb-3">
+    <button type="submit" [disabled]="jobRoleForm.invalid" class="btn btn-primary float-end">Accept</button>
+    <button type="button" class="btn btn-secondary" routerLink="/job-roles">Back</button>
+  </div>
+</form>

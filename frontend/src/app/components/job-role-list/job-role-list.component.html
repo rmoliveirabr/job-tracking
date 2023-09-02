@@ -1,0 +1,36 @@
+<div class="row mt-3">
+    <div class="col-lg-6">
+        <h3>Job Roles</h3>
+    </div>
+  </div>
+  <table *ngIf="jobRoles.length > 0" class="table table-hover mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Alternate Names</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let jobRole of jobRoles">
+          <td><a href="{{ '/job-roles/' + jobRole.id + '/view' }}">{{ jobRole.name }}</a></td>
+          <td>{{ jobRole.alternateNames }}</td>
+          <td style="width:10%">
+            <button [routerLink]="['/job-role', jobRole.id]" class="btn btn-primary btn-sm float-end">Edit</button>
+          </td>
+          <td style="width:10%">
+            <button (click)="deleteJobRole(jobRole.id)" class="btn btn-danger btn-sm float-end">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+  <div *ngIf="jobRoles.length == 0" class="row at-5">
+    <h5>No job roles saved</h5>
+  </div>
+  <div class="row mt-3">
+    <div class="col-lg-6">
+        <button class="btn btn-primary float-end" routerLink="/job-role">Add Job Role</button>
+    </div>
+  </div>
+  
