@@ -32,7 +32,7 @@ import { MatInputModule } from '@angular/material/input';
     CompanyViewComponent,
     JobRoleListComponent,
     JobRoleFormComponent,
-    JobRoleViewComponent
+    JobRoleViewComponent,
     ProfileViewComponent
   ],
   imports: [
