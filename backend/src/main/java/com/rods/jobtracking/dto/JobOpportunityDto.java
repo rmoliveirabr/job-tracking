@@ -1,5 +1,6 @@
 package com.rods.jobtracking.dto;
 
+import com.rods.jobtracking.entity.JobRole;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

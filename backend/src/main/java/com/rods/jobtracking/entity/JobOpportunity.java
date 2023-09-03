@@ -26,7 +26,7 @@ public class JobOpportunity {
     private Company recruitmentCompany;
 
     @ManyToOne
-    @JoinColumn(name="role_id")
+    @JoinColumn(name="role_id", nullable = false)
     private JobRole role;
 
     @Column(name="job_url")

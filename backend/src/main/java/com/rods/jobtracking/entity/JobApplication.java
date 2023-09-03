@@ -33,7 +33,7 @@ public class JobApplication {
 
     @Enumerated(EnumType.STRING)
     @Column(length = 15)
-    private JobOpportunityStatus status;
+    private JobApplicationStatus status;
 
     @Column(name="probability")
     private Float probability;

@@ -15,7 +15,7 @@ import java.util.Date;
 public class JobApplicationDto {
     private Long id;
     private Date date;
-    private JobOpportunity jobOpportunity;
+    private JobOpportunityDto jobOpportunity;
     private ResumeDto resume;
     private String status;
     private Float probability;
