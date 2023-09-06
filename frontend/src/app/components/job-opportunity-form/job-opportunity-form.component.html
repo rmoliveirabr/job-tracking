@@ -1,0 +1,137 @@
+<h3 class="mt-3">{{ action }} Job Opportunity</h3>
+<form [formGroup]="jobOpportunityForm" (ngSubmit)="addEditJobOpportunity()">
+  <div class="mb-3">
+    <mat-form-field appearance="fill">
+      <br />
+      <mat-label class="label">Role</mat-label>
+      <input
+        type="text"
+        placeholder="Choose one"
+        aria-label="Role"
+        matInput
+        formControlName="role"
+        id="role"
+        [matAutocomplete]="auto_role"
+      />
+      <mat-autocomplete #auto_role="matAutocomplete">
+        <mat-option *ngFor="let role of filteredRoles | async" [value]="role">
+          {{ role }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <br />
+    <span
+      class="text-danger"
+      *ngIf="
+        jobOpportunityForm.get('role')?.invalid &&
+        jobOpportunityForm.get('role')?.touched
+      "
+    >
+      <strong>Role</strong> is required.
+    </span>
+  </div>
+  <div class="mb-3">
+    <mat-form-field>
+      <br />
+      <mat-label>Hiring company</mat-label>
+      <input
+        type="text"
+        placeholder="Choose one"
+        aria-label="Hiring company"
+        matInput
+        formControlName="hiringCompany"
+        id="hiringCompany"
+        [matAutocomplete]="auto_hiring_company"
+      />
+      <mat-autocomplete #auto_hiring_company="matAutocomplete">
+        <mat-option
+          *ngFor="let hiringCompany of filteredHiringCompanies | async"
+          [value]="hiringCompany"
+        >
+          {{ hiringCompany }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <div class="mb-3">
+    <mat-form-field>
+      <br />
+      <mat-label>Recruitment company</mat-label>
+      <input
+        type="text"
+        placeholder="Choose one"
+        aria-label="Recruitment company"
+        matInput
+        formControlName="recruitmentCompany"
+        id="recruitmentCompany"
+        [matAutocomplete]="auto_recruitment_company"
+      />
+      <mat-autocomplete #auto_recruitment_company="matAutocomplete">
+        <mat-option
+          *ngFor="
+            let recruitmentCompany of filteredRecruitmentCompanies | async
+          "
+          [value]="recruitmentCompany"
+        >
+          {{ recruitmentCompany }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <div class="mb-3">
+    <label for="jobUrl" class="form-label">URL</label>
+    <input
+      formControlName="jobUrl"
+      type="text"
+      class="form-control"
+      id="jobUrl"
+      autocomplete="off"
+      autofocus
+    />
+    <span
+      class="text-danger"
+      *ngIf="
+        jobOpportunityForm.get('jobUrl')?.invalid &&
+        jobOpportunityForm.get('jobUrl')?.touched
+      "
+    >
+      <strong>Job URL</strong> is required.
+    </span>
+  </div>
+  <div class="mb-3">
+    <label for="jobDescription" class="form-label">Job description</label>
+    <input
+      formControlName="jobDescription"
+      type="text"
+      class="form-control"
+      id="jobDescription"
+      autocomplete="off"
+      autofocus
+    />
+    <span
+      class="text-danger"
+      *ngIf="
+        jobOpportunityForm.get('jobDescription')?.invalid &&
+        jobOpportunityForm.get('jobDescription')?.touched
+      "
+    >
+      <strong>Job description</strong> is required.
+    </span>
+  </div>
+  <div class="mb-3">
+    <button
+      type="submit"
+      [disabled]="jobOpportunityForm.invalid"
+      class="btn btn-primary float-end"
+    >
+      Accept
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      routerLink="/job-opportunities"
+    >
+      Back
+    </button>
+  </div>
+</form>

@@ -43,8 +43,8 @@ public class JobOpportunityServiceImpl implements JobOpportunityService {
 
     @Override
     public JobOpportunityDto createJobOpportunity(JobOpportunityDto jobOpportunityDto) {
-        Company hiringCompany = getCompanyById(jobOpportunityDto.getHiringCompany().getId());
-        Company recruitmentCompany = getCompanyById(jobOpportunityDto.getRecruitmentCompany().getId());
+        Company hiringCompany = (jobOpportunityDto.getHiringCompany() != null ? getCompanyById(jobOpportunityDto.getHiringCompany().getId()) : null);
+        Company recruitmentCompany = (jobOpportunityDto.getRecruitmentCompany() != null ? getCompanyById(jobOpportunityDto.getRecruitmentCompany().getId()) : null);
         JobRole role = getJobRoleById(jobOpportunityDto.getRole().getId());
 
         JobOpportunity jobOpportunity = JobOpportunityMapper.mapToJobOpportunity(
@@ -76,11 +76,13 @@ public class JobOpportunityServiceImpl implements JobOpportunityService {
                 .orElseThrow(() -> new ResourceNotFoundException("JobOpportunity with id '" + id + "' not found"));
 
         // update relationships if needed
-        if (jobOpportunityDto.getHiringCompany().getId() != jobOpportunity.getHiringCompany().getId())
-            jobOpportunity.setHiringCompany(getCompanyById(jobOpportunityDto.getHiringCompany().getId()));
+        jobOpportunity.setHiringCompany(getCompanyById(
+               jobOpportunityDto.getHiringCompany() == null ? null : jobOpportunityDto.getHiringCompany().getId())
+        );
 
-        if (jobOpportunityDto.getRecruitmentCompany().getId() != jobOpportunity.getRecruitmentCompany().getId())
-            jobOpportunity.setRecruitmentCompany(getCompanyById(jobOpportunityDto.getRecruitmentCompany().getId()));
+        jobOpportunity.setRecruitmentCompany(
+                jobOpportunityDto.getRecruitmentCompany() == null ? null : getCompanyById(jobOpportunityDto.getRecruitmentCompany().getId())
+        );
 
         if (jobOpportunityDto.getRole().getId() != jobOpportunity.getRole().getId())
             jobOpportunity.setRole(getJobRoleById(jobOpportunityDto.getRole().getId()));

@@ -44,6 +44,10 @@ public class JobApplicationController {
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteJobApplication(@PathVariable("id") Long id) {
         jobApplicationService.deleteJobApplication(id);
-        return ResponseEntity.ok("Job application deleted successfully!");
+        String returnMessage = "{\n" +
+                "    \"status\": \"success\",\n" +
+                "    \"message\": \"Job application deleted successfully!\"\n" +
+                "}";
+        return ResponseEntity.ok(returnMessage);
     }
 }

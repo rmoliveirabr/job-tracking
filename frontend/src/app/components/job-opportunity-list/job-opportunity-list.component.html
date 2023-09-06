@@ -1,0 +1,53 @@
+<div class="row mt-3">
+  <div class="col-lg-6">
+    <h3>Job Opportunities</h3>
+  </div>
+</div>
+<table *ngIf="jobOpportunities.length > 0" class="table table-hover mt-3">
+  <thead>
+    <tr>
+      <th scope="col">Role</th>
+      <th scope="col">Hiring Company</th>
+      <th scope="col">Recruitment Company</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let jobOpportunity of jobOpportunities">
+      <td>
+        <a href="{{ '/job-opportunities/' + jobOpportunity.id + '/view' }}">{{
+          jobOpportunity.role.name
+        }}</a>
+      </td>
+      <td>{{ jobOpportunity.hiringCompany?.name }}</td>
+      <td>{{ jobOpportunity.recruitmentCompany?.name }}</td>
+      <td style="width: 10%">
+        <button
+          [routerLink]="['/job-opportunity', jobOpportunity.id]"
+          class="btn btn-primary btn-sm float-end"
+        >
+          Edit
+        </button>
+      </td>
+      <td style="width: 10%">
+        <button
+          (click)="deleteJobOpportunity(jobOpportunity.id)"
+          class="btn btn-danger btn-sm float-end"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div *ngIf="jobOpportunities.length == 0" class="row at-5">
+  <h5>No job opportunities saved</h5>
+</div>
+<div class="row mt-3">
+  <div class="col-lg-6">
+    <button class="btn btn-primary float-end" routerLink="/job-opportunity">
+      Add Job Opportunity
+    </button>
+  </div>
+</div>

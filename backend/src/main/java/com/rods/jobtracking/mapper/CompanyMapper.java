@@ -5,7 +5,8 @@ import com.rods.jobtracking.entity.Company;
 
 public class CompanyMapper {
     public static CompanyDto mapToCompanyDto(Company company) {
-        return new CompanyDto(company.getId(), company.getName(), company.getUrl());
+        if (company == null) return null;
+        else return new CompanyDto(company.getId(), company.getName(), company.getUrl());
     }
 
     public static Company mapToCompany(CompanyDto companyDto) {

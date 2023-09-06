@@ -48,7 +48,10 @@ public class ProfileController {
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteProfile(@PathVariable("id") Long id) {
         profileService.deleteProfileBy(id);
-
-        return ResponseEntity.ok("Profile deleted successfully!");
+        String returnMessage = "{\n" +
+                "    \"status\": \"success\",\n" +
+                "    \"message\": \"Profile deleted successfully!\"\n" +
+                "}";
+        return ResponseEntity.ok(returnMessage);
     }
 }

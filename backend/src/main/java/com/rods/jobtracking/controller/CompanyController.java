@@ -44,6 +44,10 @@ public class CompanyController {
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteCompany(@PathVariable("id") Long id) {
         companyService.deleteCompany(id);
-        return ResponseEntity.ok("Company deleted successfully!");
+        String returnMessage = "{\n" +
+                "    \"status\": \"success\",\n" +
+                "    \"message\": \"Company deleted successfully!\"\n" +
+                "}";
+        return ResponseEntity.ok(returnMessage);
     }
 }

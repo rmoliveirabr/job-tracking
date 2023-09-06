@@ -44,6 +44,10 @@ public class JobRoleController {
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteJobRole(@PathVariable("id") Long id) {
         jobRoleService.deleteJobRole(id);
-        return ResponseEntity.ok("JobRole deleted successfully!");
+        String returnMessage = "{\n" +
+                "    \"status\": \"success\",\n" +
+                "    \"message\": \"Job role deleted successfully!\"\n" +
+                "}";
+        return ResponseEntity.ok(returnMessage);
     }
 }

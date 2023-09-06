@@ -19,6 +19,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { JobOpportunityListComponent } from './components/job-opportunity-list/job-opportunity-list.component';
+import { JobOpportunityFormComponent } from './components/job-opportunity-form/job-opportunity-form.component';
+import { JobOpportunityViewComponent } from './components/job-opportunity-view/job-opportunity-view.component';
+import { JobApplicationListComponent } from './components/job-application-list/job-application-list.component';
+import { JobApplicationFormComponent } from './components/job-application-form/job-application-form.component';
+import { JobApplicationViewComponent } from './components/job-application-view/job-application-view.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +39,13 @@ import { MatInputModule } from '@angular/material/input';
     JobRoleListComponent,
     JobRoleFormComponent,
     JobRoleViewComponent,
-    ProfileViewComponent
+    ProfileViewComponent,
+    JobOpportunityListComponent,
+    JobOpportunityFormComponent,
+    JobOpportunityViewComponent,
+    JobApplicationListComponent,
+    JobApplicationFormComponent,
+    JobApplicationViewComponent
   ],
   imports: [
     BrowserModule,
